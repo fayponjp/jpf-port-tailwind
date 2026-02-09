@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+:root {
+    font-family: 'Noto Sans', Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --background-dark: #ebefe8;
+    --bg-header-dark: #272d29;
+    --bg-header-layer1-dark: #344439;
+
+    --bg-bluegray: #d5d5e5;
+
+    --background-light: #edecec;
+
+
+    --glass-bg: color-mix(in oklab, var(--bg) 80%, transparent);
+    --glass-border: color-mix(in oklab, var(--glass-bg) 70%, rgb(145, 145, 145));
+}
+
+@theme {
+    --color-highlight-green: #51bd4f;
+    --color-gray-profile: #3d3d3d;
+    --color-graygreen: #4a4e4b;
+    --color-gray-sub: #939c93;
+    --color-muted: #636363;
+
+    --animate-slide-in1: slide-in 1s ease-in-out 0s backwards;
+    --animate-slide-in2: slide-in 1s ease-in-out 0.5s backwards;
+    --animate-slide-in3: slide-in 1s ease-in-out 1s backwards;
+
+    @keyframes slide-in {
+        0% {
+            opacity: 0;
+            margin-left: 100px;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes radiate {
+        0% {
+        }
+    }
+}
+
+@layer utilities {
+    .bg-mountain-gradient {
+        background-image: url('./assets/mountains.svg'), linear-gradient(to bottom, var(--bg-bluegray), oklch(98.7% 0.022 95.277));
+        /* background-size: cover, cover;
+        background-position: center bottom, center; */
+        /* background-attachment: fixed, scroll;
+        background-repeat: no-repeat, no-repeat; */
+        background-size: cover;
+        background-position: center bottom;
+    }
+}

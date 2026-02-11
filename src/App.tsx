@@ -26,7 +26,6 @@ function App() {
     const fbIconRef = useRef<HTMLAnchorElement | null>(null);
     const [fbIconCoords, setFbIconCoords] = useState<DOMRect | null>(null);
 
-
     function getCurrentCoords() {
         const elementRef = fbIconRef.current;
 
@@ -37,35 +36,32 @@ function App() {
     }
 
     return (
-        <div className='flex-end grid-rowss-[auto_1fr_auto] grid min-h-screen bg-linear-to-b from-(--bg-bluegray) via-(--bg-bluegray) to-orange-50'>
+        <div className='flex-end grid min-h-screen grid-rows-[auto_1fr_auto] bg-linear-to-b from-(--bg-bluegray) via-(--bg-bluegray) to-orange-50'>
             <header className='bg-(--bg-header-dark) px-8 py-2 text-green-50'>
                 <nav className='flex flex-row'>
                     <ul className='ml-auto flex max-w-fit flex-row gap-1'>
                         <li>Projects</li>
-                        <li>About Me</li>
+                        <li>Resume</li>
                     </ul>
                 </nav>
             </header>
             {/* 'flex flex-col place-content-between items-center gap-4 lg:flex-row lg:items-start' */}
             <main className='text-gray-profile mx-auto flex flex-col lg:w-5xl'>
-                <section className='flex flex-col justify-between bg-zinc-200/40 shadow p-20 rounded-2xl mt-40 mb-50 pt-20 pb-12'>
-                    <div className='text-muted flex flex-1 flex-col justify-between gap-4 xl:text-left'>
+                <section>
+                    <div className='text-muted mt-40 mb-60 flex flex-1 flex-col justify-between gap-4 rounded-2xl bg-white/60 lg:px-12 lg:py-10 px-4 py-4 shadow xl:text-left'>
                         <div className='flex flex-col'>
                             <p className='text-2xl'>
                                 Hi<span>!</span> I'm
                             </p>
-                            <p className='text-graygreen mb-3 text-6xl font-semibold md:text-7xl'>
+                            <p className='text-graygreen mb-3 text-6xl font-semibold lg:text-7xl'>
                                 <span>Jon Paulo Faypon</span>
                             </p>
                             <p className='text-gray-sub text-2xl'>(Fayps)</p>
                         </div>
                         <div className='flex max-w-125 flex-col gap-3'>
                             <p className='text-2xl'>Software Developer</p>
-                            <p>
-                                Experienced working with SaaS and Web
-                                Applications
-                            </p>
-                            <p>.Net development</p>
+                            <p>Experienced working with SaaS Applications</p>
+                            <p>Web and .Net development</p>
                             <p>
                                 I like tinkering and learning about cool web
                                 tech
@@ -119,13 +115,13 @@ function App() {
                 <section>This is about me</section> */}
                 {/* So may portfolios that look so amazing! */}
                 <div></div>
-                <section>
-                    <Resume/>
-                </section>
+
+                <Resume />
 
                 <section>
-                    <div className=''>
-                        <h3>Projects</h3>
+                    <div className='mb-2 flex flex-row items-center pb-0.5'>
+                        <h3 className='mb-4 text-2xl'>Projects</h3>
+                        <div className='mx-12 mb-2 flex h-px grow bg-linear-to-r from-blue-300 to-orange-50'></div>
                     </div>
                 </section>
 
@@ -135,7 +131,7 @@ function App() {
                 >
                     <option value={'baguio'}>Baguio</option>
                     <option value={'gui'}>Operating System</option>
-                    <option value={'terminal'}>Terminal</option>
+                    {/* <option value={'terminal'}>Terminal</option> */}
                 </select>
                 {/* <img className='min-w-dvw absolute z-0' src={mountainSvg} alt='' /> */}
             </main>

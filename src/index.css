@@ -19,7 +19,7 @@
 
 
     --glass-bg: color-mix(in oklab, var(--bg) 80%, transparent);
-    --glass-border: color-mix(in oklab, var(--glass-bg) 70%, rgb(145, 145, 145));
+    --glass-border: color-mix(in oklab, var(--glass-bg) 70%, rgb(207, 204, 204));
 }
 
 @theme {
@@ -27,7 +27,7 @@
     --color-gray-profile: #3d3d3d;
     --color-graygreen: #4a4e4b;
     --color-gray-sub: #939c93;
-    --color-muted: #636363;
+    --color-muted: #5a5959;
 
     --animate-slide-in1: slide-in 1s ease-in-out 0s backwards;
     --animate-slide-in2: slide-in 1s ease-in-out 0.5s backwards;

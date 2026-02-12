@@ -6,8 +6,6 @@ import {
     faSquareFacebook,
 } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import hills from './assets/hills.svg';
-import mountainSvg from './assets/mountains.svg';
 
 import Resume from './Components/Resume';
 type ThemeType = 'baguio' | 'gui' | 'terminal';
@@ -39,26 +37,38 @@ function App() {
         <div className='flex-end grid min-h-screen grid-rows-[auto_1fr_auto] bg-linear-to-b from-(--bg-bluegray) via-(--bg-bluegray) to-orange-50'>
             <header className='bg-(--bg-header-dark) px-8 py-2 text-green-50'>
                 <nav className='flex flex-row'>
+                    <select
+                        className=''
+                        onChange={(e) => handleThemeSelect(e.target.value)}
+                    >
+                        <option value={'baguio'}>Baguio</option>
+                        <option value={'gui'}>Operating System</option>
+                        {/* <option value={'terminal'}>Terminal</option> */}
+                    </select>
                     <ul className='ml-auto flex max-w-fit flex-row gap-1'>
-                        <li>Projects</li>
-                        <li>Resume</li>
+                        <li>
+                            <a href='#projects'>Projects</a>
+                        </li>
+                        <li>
+                            <a href='#resume'>Resume</a>
+                        </li>
                     </ul>
                 </nav>
             </header>
-            {/* 'flex flex-col place-content-between items-center gap-4 lg:flex-row lg:items-start' */}
-            <main className='text-gray-profile mx-auto flex flex-col lg:w-5xl'>
-                <section>
-                    <div className='text-muted mt-40 mb-60 flex flex-1 flex-col justify-between gap-4 rounded-2xl bg-white/60 lg:px-12 lg:py-10 px-4 py-4 shadow xl:text-left'>
+            <main className='text-gray-profile mx-auto flex flex-col gap-60 lg:w-5xl'>
+                <section id='home' className='lg:p-0 px-8'>
+                    <div className='text-muted mt-50 flex flex-1 flex-col justify-between gap-4 rounded-lg bg-white/60 px-4 py-4 shadow-lg lg:px-14 lg:py-10 text-center lg:text-left'>
                         <div className='flex flex-col'>
                             <p className='text-2xl'>
                                 Hi<span>!</span> I'm
                             </p>
-                            <p className='text-graygreen mb-3 text-6xl font-semibold lg:text-7xl'>
+                            <p className='text-graygreen mb-3 text-5xl font-semibold lg:text-7xl'>
                                 <span>Jon Paulo Faypon</span>
                             </p>
+                            <div className='mx-12 mb-2 flex h-px grow bg-linear-to-r from-blue-300 via-orange-50 to-orange-200'></div>
                             <p className='text-gray-sub text-2xl'>(Fayps)</p>
                         </div>
-                        <div className='flex max-w-125 flex-col gap-3'>
+                        <div className='flex max-w-125 mx-auto lg:mx-0 flex-col gap-3'>
                             <p className='text-2xl'>Software Developer</p>
                             <p>Experienced working with SaaS Applications</p>
                             <p>Web and .Net development</p>
@@ -116,24 +126,14 @@ function App() {
                 {/* So may portfolios that look so amazing! */}
                 <div></div>
 
-                <Resume />
-
-                <section>
-                    <div className='mb-2 flex flex-row items-center pb-0.5'>
-                        <h3 className='mb-4 text-2xl'>Projects</h3>
-                        <div className='mx-12 mb-2 flex h-px grow bg-linear-to-r from-blue-300 to-orange-50'></div>
+                <section id='projects'  className='lg:p-0 px-8'>
+                    <div className='mb-2 flex flex-col lg:flex-row items-center pb-0.5'>
+                        <h3 className='mb-4 text-3xl lg:text-2xl'>Projects</h3>
+                        <div className='lg:mx-12 w-[50%] lg:mb-2 flex h-px grow bg-linear-to-r from-blue-300 via-orange-50 to-orange-200'></div>
                     </div>
                 </section>
 
-                <select
-                    className='fixed right-4 bottom-8 rounded-sm bg-green-50 px-4 py-2'
-                    onChange={(e) => handleThemeSelect(e.target.value)}
-                >
-                    <option value={'baguio'}>Baguio</option>
-                    <option value={'gui'}>Operating System</option>
-                    {/* <option value={'terminal'}>Terminal</option> */}
-                </select>
-                {/* <img className='min-w-dvw absolute z-0' src={mountainSvg} alt='' /> */}
+                <Resume />
             </main>
             <footer className='overflow-hidden'>
                 <div className='inherit min-h-16'></div>

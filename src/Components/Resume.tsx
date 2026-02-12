@@ -2,13 +2,13 @@ import ResumeItem from './ResumeItem';
 
 export default function Resume() {
     return (
-        <section>
-            <div className='mb-2 flex flex-row items-center px-6 pb-0.5 lg:px-0'>
-                <h3 className='mb-4 text-2xl'>Resume</h3>
-                <div className='mx-12 mb-2 flex h-px grow bg-gray-500'></div>
+        <section id='resume'  className='lg:p-0 px-8'>
+            <div className='mb-2 flex flex-col lg:flex-row items-center pb-0.5'>
+                <h3 className='mb-4 text-3xl lg:text-2xl'>Resume</h3>
+                <div className='lg:mx-12 w-[50%] lg:mb-2 flex h-px grow bg-linear-to-r from-blue-300 via-orange-50 to-orange-200'></div>
             </div>
 
-            <div className='flex gap-6 flex-col px-6 py-8 '>
+            <div className='flex gap-8 flex-col px-6 py-8 '>
                 <div className='grid items-start lg:grid-cols-[1fr_4fr] lg:px-0'>
                     <div className='mb-2 text-2xl font-bold lg:mr-8 lg:text-base'>
                         Work Experience
@@ -36,8 +36,7 @@ export default function Resume() {
                                 <div key='1'>
                                     Commissioned to develop an "IV Monitoring
                                     App". It involved creating an IV graphic
-                                    that updated in real time, as well as a
-                                    notification function.
+                                    that updated in real time, notification functionality, and utility functions like activity logging and printing.
                                 </div>,
                             ]}
                         />
@@ -101,6 +100,19 @@ export default function Resume() {
                                         execution.
                                     </p>
                                 </div>,
+                                <div key='2'>
+                                    <p>Also responsible for training planning and execution for the useage of the reporting tools used on the platform for the PH team.</p>
+                                </div>
+                            ]}
+                        />
+                        <ResumeItem 
+                            title='Professional Services Developer'
+                            dateRange='2019 - 2021'
+                            institution='Giant International Software Station, Inc/Encompass Technologies'
+                            items={[
+                                <div key='0'>
+                                    <p>Customization development involved creating Dashboards, Reports, and process automation. Skills required web development and testing knowledge; Cloud Function (AWS or Azure equivalents) development; an understanding of SQL and relational detabases; and RESTful API development and usage</p>
+                                </div>
                             ]}
                         />
                     </div>
@@ -117,6 +129,17 @@ export default function Resume() {
                             institution='Saint Louis University, Baguio City, Philippines'
                             items={[<div key='0'></div>]}
                         />
+                    </div>
+                </div>
+
+                <div className='grid items-start lg:grid-cols-[1fr_4fr] lg:px-0'>
+                    <div className='mb-2 text-2xl font-bold lg:mr-8 lg:text-base'>
+                        Skills
+                    </div>
+                    <div className='flex flex-col gap-4 lg:border-l-2 lg:border-l-gray-200 lg:pl-6 text-sm text-muted'>
+                        <p>HTML/CSS/JavaScript, React, Tailwind CSS</p>
+                        <p>SQL - MySQL and Snowflake, PostgreSQL (largely via Supabase), firebase</p>
+                        <p>C#, Python</p>
                     </div>
                 </div>
             </div>

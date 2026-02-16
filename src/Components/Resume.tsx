@@ -1,14 +1,10 @@
 import ResumeItem from './ResumeItem';
-
+import SectionHeader from './SectionHeader';
 export default function Resume() {
     return (
-        <section id='resume'  className='lg:p-0 px-8'>
-            <div className='mb-2 flex flex-col lg:flex-row items-center pb-0.5'>
-                <h3 className='mb-4 text-3xl lg:text-2xl'>Resume</h3>
-                <div className='lg:mx-12 w-[50%] lg:mb-2 flex h-px grow bg-linear-to-r from-blue-300 via-orange-50 to-orange-200'></div>
-            </div>
-
-            <div className='flex gap-8 flex-col px-6 py-8 '>
+        <section id='resume'  className='lg:p-0 px-8 z-10'>
+            <SectionHeader title='Resume' />
+            <div className='flex gap-8 flex-col px-10 py-8 rounded-xl bg-white/70 shadow-2xl w-fit'>
                 <div className='grid items-start lg:grid-cols-[1fr_4fr] lg:px-0'>
                     <div className='mb-2 text-2xl font-bold lg:mr-8 lg:text-base'>
                         Work Experience
@@ -138,7 +134,7 @@ export default function Resume() {
                     </div>
                     <div className='flex flex-col gap-4 lg:border-l-2 lg:border-l-gray-200 lg:pl-6 text-sm text-muted'>
                         <p>HTML/CSS/JavaScript, React, Tailwind CSS</p>
-                        <p>SQL - MySQL and Snowflake, PostgreSQL (largely via Supabase), firebase</p>
+                        <p>SQL - MySQL and Snowflake, PostgreSQL (largely via Supabase), Firebase</p>
                         <p>C#, Python</p>
                     </div>
                 </div>

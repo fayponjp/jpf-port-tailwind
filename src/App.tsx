@@ -59,8 +59,8 @@ function App() {
                 </nav>
             </header>
             <main className='text-gray-profile mx-auto flex flex-col gap-60 lg:w-5xl '>
-                <section id='home' className='px-8 lg:p-0 flex my-[8vh] h-[80vh]'>
-                    <div className='text-muted m-auto flex flex-1 flex-col justify-between gap-4 rounded-xl bg-white px-4 py-4 text-center shadow-lg lg:px-14 lg:py-10 lg:text-left'>
+                <section id='home' className='relative px-8 lg:p-0 flex my-[8vh] h-[80vh]'>
+                    <div className='text-muted m-auto flex flex-1 flex-col justify-between z-10 gap-4 rounded-xl bg-white px-4 py-4 text-center shadow-lg lg:px-14 lg:py-10 lg:text-left'>
                         <div className='flex flex-col'>
                             <p className='text-2xl'>
                                 Hi<span>!</span> I'm
@@ -111,36 +111,22 @@ function App() {
                             </a>
                         </div>
                     </div>
+                    <div className='absolute inset-0 bg-grid -mx-15'></div>
                 </section>
-                {/*
-                <section>
-                    The tech I'm familiar with: - Web Development the usual
-                    suspects (HTML/CSS/JS) - frameworks I've worked with - react
-                    - react native - tailwind css - back end wise - dotnet
-                    platform/c# - sql-based query languages (MySQL, PostgreSQL
-                    rdbms) - document-based dbs (nosql/firebase) - learning or
-                    limited experience - nextjs - tanstack (formerly react
-                    query) and react router - python - plan to learn! - threejs
-                    - blender and 3d modeling
-                </section>
-                <section>Resume</section>
-                <section>This is about me</section> */}
-                {/* So may portfolios that look so amazing! */}
                 <div></div>
-
+{/* 
                 <section id='projects' className='px-8 lg:p-0'>
                     <SectionHeader title='Projects' />
                     <div className='flex'>
-                        {/* thinking of a carousel for this  */}
+
                         <div className='text-muted flex flex-col rounded-xl bg-white/60 px-8 py-6 shadow-2xl'>
-                            {/* title */}
+
                             <div className=''>
                                 <div className='font-semibold'>
                                     Gotta Go Fast
                                 </div>
                                 <div className='text-xs'>Fasting Extension</div>
                             </div>
-                            {/* image  */}
 
                             <img
                                 src={fastIdle}
@@ -148,7 +134,6 @@ function App() {
                                 alt=''
                             />
 
-                            {/* description  */}
                             <div className='text-sm'>
                                 <p>
                                     A browser extension inspired by Intermittent
@@ -168,14 +153,14 @@ function App() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 <Carousel />
                 <Resume />
             </main>
             <img src={mt3} className='absolute bottom-0 z-1 w-dvw' />
             <footer className='overflow-hidden bg-(--bg-footer)'>
-                <div className='inherit min-h-12'></div>
+                <div className='inherit min-h-40'></div>
             </footer>
         </div>
     );

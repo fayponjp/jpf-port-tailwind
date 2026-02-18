@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 :root {
-    font-family: 'Noto Sans', Helvetica, Arial, sans-serif;
+    font-family: 'Poppins', Helvetica, Arial, sans-serif;
     line-height: 1.5;
 
     font-synthesis: none;
@@ -30,7 +30,7 @@
 @theme {
     --color-highlight-green: #51bd4f;
     --color-gray-profile: #3d3d3d;
-    --color-graygreen: #4a4e4b;
+    --color-graytext: #3c3c3c;
     --color-gray-sub: #939c93;
     --color-muted: #5a5959;
 

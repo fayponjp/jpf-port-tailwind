@@ -4,9 +4,9 @@ export default function Resume() {
     return (
         <section id='resume'  className='lg:p-0 px-8 z-10'>
             <SectionHeader title='Resume' />
-            <div className='flex gap-8 flex-col px-10 py-8 rounded-xl bg-white/70 shadow-2xl w-fit'>
-                <div className='grid items-start lg:grid-cols-[1fr_4fr] lg:px-0'>
-                    <div className='mb-2 text-2xl font-bold lg:mr-8 lg:text-base'>
+            <div className='flex gap-8 flex-col px-10 py-10 rounded-xl bg-white/70 shadow-2xl w-fit'>
+                <div className='grid items-start lg:grid-cols-[1fr_5fr] lg:px-0'>
+                    <div className='mb-2 text-2xl font-bold lg:mr-4 lg:text-base'>
                         Work Experience
                     </div>
                     <div className='flex flex-col gap-4 lg:border-l-2 lg:border-l-gray-200 lg:pl-6'>
@@ -103,7 +103,7 @@ export default function Resume() {
                         />
                         <ResumeItem 
                             title='Professional Services Developer'
-                            dateRange='2019 - 2021'
+                            dateRange='2019 -- 2021'
                             institution='Giant International Software Station, Inc/Encompass Technologies'
                             items={[
                                 <div key='0'>
@@ -114,8 +114,8 @@ export default function Resume() {
                     </div>
                 </div>
 
-                <div className='grid items-start lg:grid-cols-[1fr_4fr] lg:px-0'>
-                    <div className='mb-2 text-2xl font-bold lg:mr-8 lg:text-base'>
+                <div className='grid items-start lg:grid-cols-[1fr_5fr] lg:px-0'>
+                    <div className='mb-2 text-2xl font-bold lg:mr-4 lg:text-base'>
                         Education
                     </div>
                     <div className='flex flex-col gap-4 lg:border-l-2 lg:border-l-gray-200 lg:pl-6'>
@@ -128,8 +128,8 @@ export default function Resume() {
                     </div>
                 </div>
 
-                <div className='grid items-start lg:grid-cols-[1fr_4fr] lg:px-0'>
-                    <div className='mb-2 text-2xl font-bold lg:mr-8 lg:text-base'>
+                <div className='grid items-start lg:grid-cols-[1fr_5fr] lg:px-0'>
+                    <div className='mb-2 text-2xl font-bold lg:mr-4 lg:text-base'>
                         Skills
                     </div>
                     <div className='flex flex-col gap-4 lg:border-l-2 lg:border-l-gray-200 lg:pl-6 text-sm text-muted'>

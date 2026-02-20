@@ -10,7 +10,7 @@
     -moz-osx-font-smoothing: grayscale;
 
     --background-dark: #ebefe8;
-    --bg-header-dark: #3f3f44;
+    --bg-header-dark: #262329;
     --bg-header-layer1-dark: #344439;
     --bg-footer: #e8e5ea;
 
@@ -49,8 +49,20 @@
         }
     }
 
-    @keyframes radiate {
-        0% {
+    --animate-carousel-shift: carousel-shift 0.5s ease-in;
+    --animate-carousel-shift-200: carousel-shift 0.5s ease-in 200ms backwards;
+    --animate-carousel-shift-300: carousel-shift 0.5s ease-in 300ms backwards;
+
+    @keyframes carousel-shift {
+        from {
+            opacity: 0;
+            filter: blur(40px);
+            transform: translateY(60px);
+        }
+        to {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
         }
     }
 }
@@ -70,34 +82,6 @@
         background-repeat: no-repeat, no-repeat;
         /* background-size: cover; */
         background-position: center bottom;
-    }
-
-    .bg-blob {
-        background-image:
-            url('./assets/blob.svg'),
-            linear-gradient(
-                to bottom,
-                rgba(171, 202, 243, 0.4),
-                rgba(240, 229, 208, 0.5)
-            );
-        background-size: cover;
-        background-attachment: fixed, scroll;
-        background-repeat: no-repeat;
-    }
-
-    /* Photo by Drew Beamer on Unsplash */
-    .bg-full {
-        background-image:
-            linear-gradient(
-                to bottom,
-                rgba(237, 237, 246, 0.6),
-                rgba(213, 213, 229, 0.6)
-            ),
-            url('./assets/drew-beamer-kUHfMW8awpE-unsplash.jpg');
-        /* background-repeat: no-repeat; */
-        background-size: cover;
-        background-position: center center;
-        background-attachment: scroll, fixed;
     }
 
     .bg-grid {

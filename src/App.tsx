@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+// import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faSquareLinkedin,
@@ -8,46 +8,45 @@ import {
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import SectionHeader from './Components/SectionHeader';
 import Resume from './Components/Resume';
-import fastIdle from './assets/fasting idle.png';
+
 import mt3 from './assets/mt3.svg';
 import Carousel from './Components/Carousel';
-type ThemeType = 'simple' | 'gui' | 'terminal';
+// type ThemeType = 'simple' | 'gui' | 'terminal';
 
 function App() {
-    const [theme, setTheme] = useState<ThemeType>('simple');
+    // const [theme, setTheme] = useState<ThemeType>('simple');
 
-    const handleThemeSelect = (e: string) => {
-        setTheme(e as ThemeType);
-        console.log(theme);
-    };
-    useEffect(() => {
-        // theme change
-    }, [theme]);
+    // const handleThemeSelect = (e: string) => {
+    //     setTheme(e as ThemeType);
+    //     console.log(theme);
+    // };
+    // useEffect(() => {
+    //     // theme change
+    // }, [theme]);
 
-    const fbIconRef = useRef<HTMLAnchorElement | null>(null);
-    const [fbIconCoords, setFbIconCoords] = useState<DOMRect | null>(null);
+    // const fbIconRef = useRef<HTMLAnchorElement | null>(null);
+    // const [fbIconCoords, setFbIconCoords] = useState<DOMRect | null>(null);
 
-    function getCurrentCoords() {
-        const elementRef = fbIconRef.current;
+    // function getCurrentCoords() {
+    //     const elementRef = fbIconRef.current;
 
-        if (elementRef) {
-            console.log(elementRef.getBoundingClientRect());
-            setFbIconCoords(elementRef.getBoundingClientRect());
-        }
-    }
+    //     if (elementRef) {
+    //         console.log(elementRef.getBoundingClientRect());
+    //         setFbIconCoords(elementRef.getBoundingClientRect());
+    //     }
+    // }
 
     return (
         <div className='flex-end relative grid min-h-screen grid-rows-[auto_1fr_auto] overflow-x-hidden bg-linear-to-b from-(--bg-bluegray) to-orange-50'>
             <header className='shadow px-8 py-2 text-sm text-gray-profile'>
                 <nav className='flex flex-row'>
-                    <select
+                    {/* <select
                         className=''
                         onChange={(e) => handleThemeSelect(e.target.value)}
                     >
                         <option value={'simple'}>Dawn</option>
                         <option value={'gui'}>Operating System</option>
-                        {/* <option value={'terminal'}>Terminal</option> */}
-                    </select>
+                    </select> */}
                     <ul className='ml-auto flex max-w-fit flex-row gap-3'>
                         <li>
                             <a href='#projects'>Projects</a>
@@ -71,7 +70,7 @@ function App() {
                             <div className='mx-12 mb-2 flex h-px grow bg-linear-to-r from-indigo-300 via-orange-50 to-orange-200'></div>
                         </div>
                         <div className='mx-auto flex max-w-125 flex-col gap-3 lg:mx-0'>
-                            <p className='text-2xl'>Software Developer</p>
+                            <p className='text-2xl font-mono'>Software Developer</p>
                             <p>SaaS experience</p>
                             <p>Web and .Net development</p>
                             <p>

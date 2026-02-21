@@ -12,7 +12,7 @@
     --background-dark: #ebefe8;
     --bg-header-dark: #262329;
     --bg-header-layer1-dark: #344439;
-    --bg-footer: #e8e5ea;
+    --bg-footer: #5a5b69;
 
     --bg-bluegray: #d5d5e5;
     --bg-fasting: #343245;
@@ -34,9 +34,10 @@
     --color-gray-sub: #939c93;
     --color-muted: #5a5959;
 
-    --animate-slide-in1: slide-in 1s ease-in-out 0s backwards;
+    --animate-slide-in1: slide-in 300ms ease-in-out 0s backwards;
     --animate-slide-in2: slide-in 1s ease-in-out 0.5s backwards;
     --animate-slide-in3: slide-in 1s ease-in-out 1s backwards;
+    --animate-slide-out: slide-out 50ms ease-in-out forwards;
 
     @keyframes slide-in {
         0% {
@@ -46,6 +47,30 @@
 
         100% {
             opacity: 1;
+        }
+    }
+
+    @keyframes slide-out {
+        0% {
+            opacity: 1;
+            margin-right: 0;
+        }
+
+        100% {
+            opacity: 0;
+            margin-right: -10px;
+        }
+    }
+
+    --animate-rotate: rotate 400ms ease-in-out 100ms forwards;
+
+    @keyframes rotate {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            transform: rotate(90deg);
+            opacity: 0;
         }
     }
 

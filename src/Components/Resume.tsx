@@ -34,6 +34,9 @@ export default function Resume() {
                                     App". It involved creating an IV graphic
                                     that updated in real time, notification functionality, and utility functions like activity logging and printing.
                                 </div>,
+                                <div key='2'>
+                                    Created SPAs, landing pages, and components as commissions. Designs are provided via design tools (Figma, AdobeXD etc) or designed with client input.
+                                </div>
                             ]}
                         />
                         <ResumeItem
@@ -56,7 +59,7 @@ export default function Resume() {
                                         configuration tools and manual
                                         configuration tweaks. This responsibilty
                                         largely consisted of knowledge about
-                                        markup and parsing data.
+                                        markup notation and parsing data.
                                     </p>
                                 </div>,
                                 <div key='2'>
@@ -133,8 +136,8 @@ export default function Resume() {
                         Skills
                     </div>
                     <div className='flex flex-col gap-4 lg:border-l-2 lg:border-l-gray-200 lg:pl-6 text-sm text-muted'>
-                        <p>HTML/CSS/JavaScript, React, Tailwind CSS</p>
-                        <p>SQL - MySQL and Snowflake, PostgreSQL (largely via Supabase), Firebase</p>
+                        <p>HTML/CSS/JavaScript, TypeScript, React, Tailwind CSS</p>
+                        <p>SQL: MySQL and Snowflake, PostgreSQL via Supabase, Firebase</p>
                         <p>C#, Python</p>
                     </div>
                 </div>

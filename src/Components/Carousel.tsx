@@ -12,7 +12,7 @@ const Projects: CarouselItemProps[] = [
         img: ivMonitoring,
         subtopic: 'Mobile App',
         name: 'IV Monitoring',
-        desc: <p>An application for tracking patient IV fluid measurements.</p>,
+        desc: <><p>An application for tracking patient IV fluid measurements. Has mobile notifications, a 'remaining volume' visual and logging and printing functionality.</p><p>Created using React Native + TypeScript and the Context API.</p></>
     },
     {
         projKey: 2,
@@ -25,7 +25,9 @@ const Projects: CarouselItemProps[] = [
                     Work In Progress!
                 </p>
                 <p>
-                    A dictionary app for Filipino slang. 'Di Bagets o 'di ba
+                    A dictionary app for Filipino slang. Written using React + TypeScript with React Router. Data is crowdsourced and managed via Supabase.
+                </p>
+                <p>'Di Bagets o 'di ba
                     gets?
                 </p>
             </>
@@ -40,14 +42,17 @@ const Projects: CarouselItemProps[] = [
         liveUrl: 'https://fayponjp.github.io/not-quite-wordle/',
         githubUrl: 'https://github.com/fayponjp/not-quite-wordle',
         desc: (
+            <>
             <p>
                 An infinitely-replayable recreation of The New York Times'{' '}
-                <a href='https://www.nytimes.com/games/wordle/index.html'>
+                <a className='underline text-blue-200 visited:text-purple-500 underline-offset-1' href='https://www.nytimes.com/games/wordle/index.html'>
                     online Wordle
                 </a>{' '}
-                game. A self-imposed challenge to attempt recreating the game
-                from scratch.
+                game. A self-imposed challenge project to recreate the game
+                from scratch. Words are generated via the <a className='underline text-blue-200 visited:text-purple-500 underline-offset-1' href='https://www.npmjs.com/package/random-words'>random-words</a> npm package.
             </p>
+            <p>Written in JavaScript using React.</p>
+            </>
         ),
     },
     {
@@ -59,13 +64,13 @@ const Projects: CarouselItemProps[] = [
         desc: (
             <>
                 <p>
-                    A browser extension inspired by Intermittent Fasting apps
-                    like Zero and Fasty.
+                    A browser extension inspired by Intermittent Fasting mobile apps
+                    like Zero and Fasty. Uses the localStorage API for history tracking. Created with React.
                 </p>
                 <p>
                     Learn more about Intermittent Fasting{' '}
                     <a
-                        className='underline underline-offset-1'
+                        className='underline text-blue-200 visited:text-purple-500 underline-offset-1'
                         target='_blank'
                         href='https://www.hopkinsmedicine.org/health/wellness-and-prevention/intermittent-fasting-what-is-it-and-how-does-it-work'
                     >
@@ -105,7 +110,7 @@ function CarouselItem({
                 isActive ? 'visible opacity-100' : 'invisible opacity-0'
             }`}
         >
-            <div className='mx-auto flex flex-col-reverse gap-8 lg:flex-row lg:p-0'>
+            <div className='lg:mx-auto lg:text-base items-center text-sm px-4 flex flex-col-reverse gap-8 lg:flex-row lg:p-0'>
                 <div className='flex'>
                     {/* lg:-translate-z-150 lg:-rotate-x-4 lg:rotate-y-20 */}
                     <img
@@ -114,21 +119,21 @@ function CarouselItem({
                         alt=''
                     />
                 </div>
-                <div className='box-border flex w-lg max-w-[80%] flex-col gap-2 self-start text-white lg:mt-35 lg:text-shadow-2xs'>
-                    <div className='animate-carousel-shift font-semibold text-orange-100'>
+                <div className='box-border flex w-lg lg:self-start max-w-[80%] flex-col gap-2 text-white lg:mt-35 lg:text-shadow-2xs'>
+                    <div className=' font-semibold text-orange-100'>
                         {subtopic}
                     </div>
-                    <div className='animate-carousel-shift-200 text-5xl font-semibold delay-100 lg:text-7xl'>
+                    <div className='text-5xl font-semibold lg:text-7xl'>
                         {name}
                     </div>
-                    <div className='description animate-carousel-shift-300'>
+                    <div className='text-sm/7 description'>
                         {desc}
                     </div>
-                    <div className='links flex flex-row gap-2'>
+                    <div className='links flex flex-row gap-2 font-mono'>
                         {githubUrl && (
                             <a
                                 href={githubUrl}
-                                className='text-gray-profile w-30 bg-white px-1 py-3 text-center tracking-wider visited:text-violet-700 hover:text-blue-400 visited:hover:text-violet-500'
+                                className='text-gray-profile w-30 bg-white py-2 text-center tracking-wider visited:text-violet-700 hover:text-blue-400 visited:hover:text-violet-500'
                             >
                                 CODE
                             </a>
@@ -136,7 +141,7 @@ function CarouselItem({
                         {liveUrl && (
                             <a
                                 href={liveUrl}
-                                className='w-30 border border-white bg-transparent px-1 py-3 text-center tracking-wider text-white visited:text-violet-400 hover:text-blue-400 visited:hover:text-violet-300'
+                                className='w-30 border border-white bg-transparent py-2 text-center tracking-wider text-white visited:text-violet-400 hover:text-blue-400 visited:hover:text-violet-300'
                             >
                                 LIVE
                             </a>
@@ -165,7 +170,7 @@ function ThumbnailItem({
 }) {
     return (
         <li
-            className={`relative h-56 w-38 cursor-pointer rounded ring-2 transition-opacity ${
+            className={`relative h-56 w-38 cursor-pointer rounded overflow-hidden ring-2 transition-opacity ${
                 isActive
                     ? 'opacity-100 ring-orange-400'
                     : 'opacity-60 ring-white/60 hover:opacity-80'

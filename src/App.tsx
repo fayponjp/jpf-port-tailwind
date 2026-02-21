@@ -1,21 +1,30 @@
-// import { useEffect, useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faSquareLinkedin,
     faSquareGithub,
     faSquareFacebook,
 } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import SectionHeader from './Components/SectionHeader';
+import { faEnvelope, faBars } from '@fortawesome/free-solid-svg-icons';
 import Resume from './Components/Resume';
 
-import mt3 from './assets/mt3.svg';
+// import mt3 from './assets/mt3.svg';
 import Carousel from './Components/Carousel';
 // type ThemeType = 'simple' | 'gui' | 'terminal';
 
 function App() {
     // const [theme, setTheme] = useState<ThemeType>('simple');
+    const [navIsOpen, setNavIsOpen] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
 
+    const handleNavClose = () => {
+        setIsClosing(true);
+        const timer = setTimeout(() => {
+            setNavIsOpen(false);
+            setIsClosing(false);
+        }, 150);
+        return () => clearTimeout(timer);
+    };
     // const handleThemeSelect = (e: string) => {
     //     setTheme(e as ThemeType);
     //     console.log(theme);
@@ -38,8 +47,8 @@ function App() {
 
     return (
         <div className='flex-end relative grid min-h-screen grid-rows-[auto_1fr_auto] overflow-x-hidden bg-linear-to-b from-(--bg-bluegray) to-orange-50'>
-            <header className='shadow px-8 py-2 text-sm text-gray-profile'>
-                <nav className='flex flex-row'>
+            <header className='text-gray-profile fixed top-3 right-3 z-30 text-sm'>
+                <nav>
                     {/* <select
                         className=''
                         onChange={(e) => handleThemeSelect(e.target.value)}
@@ -47,30 +56,70 @@ function App() {
                         <option value={'simple'}>Dawn</option>
                         <option value={'gui'}>Operating System</option>
                     </select> */}
-                    <ul className='ml-auto flex max-w-fit flex-row gap-3'>
-                        <li>
-                            <a href='#projects'>Projects</a>
-                        </li>
-                        <li>
-                            <a href='#resume'>Resume</a>
-                        </li>
-                    </ul>
+                    {!navIsOpen ? (
+                        <div className='rounded-lg bg-white/60 p-3'>
+                            <button
+                                onClick={() =>
+                                    setNavIsOpen((prevBool) => !prevBool)
+                                }
+                                className='cursor-pointer text-2xl transition delay-50 hover:scale-110 hover:text-slate-400'
+                            >
+                                <FontAwesomeIcon icon={faBars} />
+                            </button>
+                        </div>
+                    ) : (
+                        <div
+                            className={`relative ${
+                                isClosing
+                                    ? 'animate-slide-out'
+                                    : 'animate-slide-in1'
+                            }`}
+                        >
+                            <button
+                                className='absolute top-1 right-1 cursor-pointer rounded-[50%] bg-white px-3 py-1 text-xl lg:text-3xl text-slate-400 transition delay-50 hover:text-slate-700'
+                                onClick={handleNavClose}
+                            >
+                                x
+                            </button>
+                            <ul className='ml-auto flex max-w-fit flex-col gap-4 rounded-lg bg-white py-4 pr-12 pl-6 lg:text-xl'>
+                                <li className='hover:text-blue-800'>
+                                    <a href='#home'>Home</a>
+                                </li>
+                                <div className='h-px grow bg-linear-to-r to-indigo-300 from-orange-50'></div>
+                                <li className='hover:text-blue-800'>
+                                    <a href='#projects'>Projects</a>
+                                </li>
+                                <div className='h-px grow bg-linear-to-r to-indigo-300 from-orange-50 '></div>
+                                <li className='hover:text-blue-800'>
+                                    <a href='#resume'>Resume</a>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
                 </nav>
             </header>
-            <main className='text-gray-profile mx-auto flex flex-col gap-60 lg:w-5xl '>
-                <section id='home' className='relative px-8 lg:p-0 flex my-[8vh] h-[80vh]'>
-                    <div className='text-muted m-auto flex flex-1 flex-col justify-between z-10 gap-4 rounded-xl bg-white px-4 py-4 text-center shadow-lg lg:px-14 lg:py-10 lg:text-left'>
+            <main className='text-gray-profile mx-auto flex flex-col gap-60 lg:w-5xl'>
+                <section
+                    id='home'
+                    className='relative my-[8vh] flex h-[80vh] px-8 lg:p-0'
+                >
+                    <div className='text-muted z-10 m-auto flex flex-1 flex-col justify-between gap-4 rounded-xl bg-white px-4 py-4 text-center shadow-lg lg:px-14 lg:py-10 lg:text-left'>
                         <div className='flex flex-col'>
                             <p className='text-2xl'>
                                 Hi<span>!</span> I'm
                             </p>
                             <p className='text-graygreen mb-3 text-5xl font-semibold lg:text-7xl'>
-                                Jon Paulo Faypon <span className='text-gray-sub text-2xl align-super'><sup>(Fayps)</sup></span>
+                                Jon Paulo Faypon{' '}
+                                <span className='text-gray-sub align-super text-2xl'>
+                                    <sup>(Fayps)</sup>
+                                </span>
                             </p>
                             <div className='mx-12 mb-2 flex h-px grow bg-linear-to-r from-indigo-300 via-orange-50 to-orange-200'></div>
                         </div>
                         <div className='mx-auto flex max-w-125 flex-col gap-3 lg:mx-0'>
-                            <p className='text-2xl font-mono'>Software Developer</p>
+                            <p className='font-mono text-2xl'>
+                                Software Developer
+                            </p>
                             <p>SaaS experience</p>
                             <p>Web and .Net development</p>
                             <p>
@@ -110,10 +159,10 @@ function App() {
                             </a>
                         </div>
                     </div>
-                    <div className='absolute inset-0 bg-grid -mx-15'></div>
+                    <div className='bg-grid absolute inset-0 -mx-15'></div>
                 </section>
                 <div></div>
-{/* 
+                {/* 
                 <section id='projects' className='px-8 lg:p-0'>
                     <SectionHeader title='Projects' />
                     <div className='flex'>
@@ -157,9 +206,15 @@ function App() {
                 <Carousel />
                 <Resume />
             </main>
-            <img src={mt3} className='absolute bottom-0 z-1 w-dvw' />
-            <footer className='overflow-hidden bg-(--bg-footer)'>
-                <div className='inherit min-h-40'></div>
+            {/* <img src={mt3} className='z-1 -mt-[45%] w-dvw' /> */}
+            <footer className='z-10 mt-25 flex flex-row overflow-hidden bg-(--bg-footer) py-12 text-gray-200'>
+                <div className='mx-auto flex flex-col gap-2 text-end lg:w-5xl'>
+                    ©2026 Jon Paulo Faypon
+                    <a
+                        className='font-mono text-sm hover:text-blue-300'
+                        href='https://github.com/fayponjp/jpf-port-tailwind'
+                    >{`Source Code </>`}</a>
+                </div>
             </footer>
         </div>
     );

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faSquareLinkedin,
@@ -8,12 +8,11 @@ import {
 import { faEnvelope, faBars } from '@fortawesome/free-solid-svg-icons';
 import Resume from './Components/Resume';
 
-// import mt3 from './assets/mt3.svg';
 import Carousel from './Components/Carousel';
-// type ThemeType = 'simple' | 'gui' | 'terminal';
+
 
 function App() {
-    // const [theme, setTheme] = useState<ThemeType>('simple');
+
     const [navIsOpen, setNavIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
 
@@ -25,37 +24,12 @@ function App() {
         }, 150);
         return () => clearTimeout(timer);
     };
-    // const handleThemeSelect = (e: string) => {
-    //     setTheme(e as ThemeType);
-    //     console.log(theme);
-    // };
-    // useEffect(() => {
-    //     // theme change
-    // }, [theme]);
 
-    // const fbIconRef = useRef<HTMLAnchorElement | null>(null);
-    // const [fbIconCoords, setFbIconCoords] = useState<DOMRect | null>(null);
-
-    // function getCurrentCoords() {
-    //     const elementRef = fbIconRef.current;
-
-    //     if (elementRef) {
-    //         console.log(elementRef.getBoundingClientRect());
-    //         setFbIconCoords(elementRef.getBoundingClientRect());
-    //     }
-    // }
 
     return (
         <div className='flex-end relative grid min-h-screen grid-rows-[auto_1fr_auto] overflow-x-hidden bg-linear-to-b from-(--bg-bluegray) to-orange-50'>
             <header className='text-gray-profile fixed top-3 right-3 z-30 text-sm'>
                 <nav>
-                    {/* <select
-                        className=''
-                        onChange={(e) => handleThemeSelect(e.target.value)}
-                    >
-                        <option value={'simple'}>Dawn</option>
-                        <option value={'gui'}>Operating System</option>
-                    </select> */}
                     {!navIsOpen ? (
                         <div className='rounded-lg bg-white/60 p-3'>
                             <button
@@ -162,51 +136,11 @@ function App() {
                     <div className='bg-grid absolute inset-0 -mx-15'></div>
                 </section>
                 <div></div>
-                {/* 
-                <section id='projects' className='px-8 lg:p-0'>
-                    <SectionHeader title='Projects' />
-                    <div className='flex'>
-
-                        <div className='text-muted flex flex-col rounded-xl bg-white/60 px-8 py-6 shadow-2xl'>
-
-                            <div className=''>
-                                <div className='font-semibold'>
-                                    Gotta Go Fast
-                                </div>
-                                <div className='text-xs'>Fasting Extension</div>
-                            </div>
-
-                            <img
-                                src={fastIdle}
-                                className='max-h-100 object-contain rounded-xl opacity-90 shadow'
-                                alt=''
-                            />
-
-                            <div className='text-sm'>
-                                <p>
-                                    A browser extension inspired by Intermittent
-                                    Fasting apps like Zero and Fasty.
-                                </p>
-                                <p>
-                                    Learn more about Intermittent Fasting{' '}
-                                    <a
-                                        className='underline underline-offset-1'
-                                        target='_blank'
-                                        href='https://www.hopkinsmedicine.org/health/wellness-and-prevention/intermittent-fasting-what-is-it-and-how-does-it-work'
-                                    >
-                                        here
-                                    </a>
-                                    !
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section> */}
 
                 <Carousel />
                 <Resume />
             </main>
-            {/* <img src={mt3} className='z-1 -mt-[45%] w-dvw' /> */}
+
             <footer className='z-10 mt-25 flex flex-row overflow-hidden bg-(--bg-footer) py-12 text-gray-200'>
                 <div className='mx-auto flex flex-col gap-2 text-end lg:w-5xl'>
                     ©2026 Jon Paulo Faypon

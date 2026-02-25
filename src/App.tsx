@@ -5,14 +5,13 @@ import {
     faSquareGithub,
     faSquareFacebook,
 } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faBars, faBook } from '@fortawesome/free-solid-svg-icons';
 import Resume from './Components/Resume';
 
 import Carousel from './Components/Carousel';
-
+import Guestbook from './Components/Guestbook';
 
 function App() {
-
     const [navIsOpen, setNavIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
 
@@ -25,10 +24,9 @@ function App() {
         return () => clearTimeout(timer);
     };
 
-
     return (
         <div className='flex-end relative grid min-h-screen grid-rows-[auto_1fr_auto] overflow-x-hidden bg-linear-to-b from-(--bg-bluegray) to-orange-50'>
-            <header className='text-gray-profile fixed top-3 right-3 z-30 text-sm'>
+            <header className='text-gray-profile fixed top-3 right-5 z-30 text-sm'>
                 <nav>
                     {!navIsOpen ? (
                         <div className='rounded-lg bg-white/60 p-3'>
@@ -50,7 +48,7 @@ function App() {
                             }`}
                         >
                             <button
-                                className='absolute top-1 right-1 cursor-pointer rounded-[50%] bg-white px-3 py-1 text-xl lg:text-3xl text-slate-400 transition delay-50 hover:text-slate-700'
+                                className='absolute top-1 right-1 cursor-pointer rounded-[50%] bg-white px-3 py-1 text-xl text-slate-400 transition delay-50 hover:text-slate-700 lg:text-3xl'
                                 onClick={handleNavClose}
                             >
                                 x
@@ -59,11 +57,11 @@ function App() {
                                 <li className='hover:text-blue-800'>
                                     <a href='#home'>Home</a>
                                 </li>
-                                <div className='h-px grow bg-linear-to-r to-indigo-300 from-orange-50'></div>
+                                <div className='h-px grow bg-linear-to-r from-orange-50 to-indigo-300'></div>
                                 <li className='hover:text-blue-800'>
                                     <a href='#projects'>Projects</a>
                                 </li>
-                                <div className='h-px grow bg-linear-to-r to-indigo-300 from-orange-50 '></div>
+                                <div className='h-px grow bg-linear-to-r from-orange-50 to-indigo-300'></div>
                                 <li className='hover:text-blue-800'>
                                     <a href='#resume'>Resume</a>
                                 </li>
@@ -71,6 +69,17 @@ function App() {
                         </div>
                     )}
                 </nav>
+                <button
+                    className={`mt-4 grid max-w-20 place-items-center rounded-lg border-2 border-white px-2 py-3 ${
+                        isClosing ? 'animate-slide-out' : 'animate-slide-in1'
+                    }`}
+                    title='Sign the Guestbook!'
+                >
+                    <FontAwesomeIcon
+                        className='cursor-pointer text-3xl text-red-900 transition delay-50 hover:scale-110 hover:text-red-700'
+                        icon={faBook}
+                    />
+                </button>
             </header>
             <main className='text-gray-profile mx-auto flex flex-col gap-60 lg:w-5xl'>
                 <section
@@ -140,7 +149,7 @@ function App() {
                 <Carousel />
                 <Resume />
             </main>
-
+            <Guestbook />
             <footer className='z-10 mt-25 flex flex-row overflow-hidden bg-(--bg-footer) py-12 text-gray-200'>
                 <div className='mx-auto flex flex-col gap-2 text-end lg:w-5xl'>
                     ©2026 Jon Paulo Faypon

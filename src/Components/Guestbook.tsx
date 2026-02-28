@@ -1,42 +1,87 @@
+import { useState } from 'react';
+
 export default function Guestbook() {
-    const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log(e.currentTarget)
+    const [guestname, setGuestname] = useState<string | undefined>();
+    const handleGuestnameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setGuestname(e.target.value);
     }
+
+    const [guestEmail, setGuestEmail] = useState<string | undefined>();
+    const handleGuestEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setGuestEmail(e.target.value);
+    }
+
+    const [message, setMessage] = useState<string | undefined>();
+    const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setMessage(e.target.value);
+    }
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
+        console.log(guestname)
+        console.log(guestEmail)
+        console.log(message)
+    };
     return (
         <>
             {/* <div className='fixed z-30 h-screen w-screen bg-gray-600/90'></div> */}
             <div
                 popover=''
                 id='guestbook-popover'
-                className='z-30 lg:right-18 mt-6 right-5 inset-[unset] max-w-[90vw] shadow-2xl rounded-lg bg-white lg:flex-row animate-slide-in1'
+                className='animate-slide-in1 inset-[unset] right-5 z-30 mt-6 max-w-[90vw] rounded-lg bg-white shadow-2xl lg:right-18 lg:flex-row'
             >
-                <form className='flex flex-col px-8  py-6 gap-2' onSubmit={handleSubmit}>
-                    <label className='flex flex-col gap' htmlFor='guestbookUser'>
-                        <span>Username</span>
+                <form
+                    className='flex flex-col gap-2 px-8 py-6'
+                    onSubmit={handleSubmit}
+                >
+                    <label
+                        className='flex flex-col gap-1.5'
+                        htmlFor='guestbookUser'
+                    >
+                        <span>Name*</span>
                         <input
-                            type='text' className='border rounded border-gray-300 p-1'
+                            type='text'
+                            className='peer rounded border border-gray-300 p-1'
                             name='guestbookUser'
                             id='guestbookUser'
+                            placeholder='hello, visitor!'
+                            onChange={handleGuestnameChange}
                             required
-                            placeholder='username'
                         />
-                        <p className='invisible peer-required:visible text-red-600'>A username is required!</p>
                     </label>
-                    <label className='flex flex-col gap' htmlFor='guestbookEmail'>
+                    <label
+                        className='flex flex-col gap-1.5'
+                        htmlFor='guestbookEmail'
+                    >
                         <span>Email</span>
-                        <input 
-                            type='email' className='border rounded border-gray-300 p-1'
+                        <input
+                            type='email'
+                            className='rounded border border-gray-300 p-1'
                             name='guestbookEmail'
                             id='guestbookEmail'
                             placeholder='Email'
+                            onChange={handleGuestEmailChange}
                         />
                     </label>
-                    <label className='flex flex-col gap' htmlFor='guestbookMessage'>
-                        <span>Message</span>
-                        <textarea name='guestbookMessage' className='border rounded border-gray-300 p-1' id='guestbookMessage' rows={3}/>
+                    <label
+                        className='flex flex-col gap-1.5'
+                        htmlFor='guestbookMessage'
+                    >
+                        <span>Message*</span>
+                        <textarea
+                            name='guestbookMessage'
+                            placeholder='Messages will require approval before appearing!'
+                            className='rounded border border-gray-300 p-1'
+                            id='guestbookMessage'
+                            rows={3}
+                            onChange={handleMessageChange}
+                            required
+                        />
                     </label>
-                    <button className='border rounded border-green-700 text-green-700'>Submit</button>
+                    <button className='rounded bg-amber-300 text-gray-800 p-2 hover:scale-105 cursor-pointer transition'>
+                        SUBMIT
+                    </button>
                 </form>
             </div>
         </>

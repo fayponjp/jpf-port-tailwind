@@ -32,37 +32,11 @@ export default function Guestbook() {
         setMessage(e.target.value);
     };
 
-    const [hasSubmitError, setHasSubmitError] = useState(false);
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        if (guestname && message) {
-            const addErr = await GuestbookAPI.addGuestbookEntry({
-                guest: guestname,
-                guest_message: message,
-                guest_email: guestEmail,
-            });
-
-            if (addErr) {
-                setHasSubmitError(true);
-            }
-        }
+    const setEmptyInputs = () => {
+        setGuestname('');
+        setGuestEmail('');
+        setMessage('');
     };
-
-    const [guestbookData, setGuestbookData] = useState<Message[] | undefined>();
-    async function loadGuestMessages() {
-        const { data, error } = await GuestbookAPI.getGuestbook();
-
-        if (data && data.length > 0) {
-            setGuestbookData(data);
-        } else if (error) {
-            console.error(error.message);
-        }
-    }
-
-    const guestbookMap = guestbookData ? guestbookData.map((guestMessage, index) => (
-        <GuestbookItem key={`guestbookitem-${index}`} {...guestMessage} />
-    )) : <p>No guestbook messages yet!</p>;
 
     const [isValidated, setIsValidated] = useState(false);
     const [validationError, setValidationError] = useState<
@@ -78,6 +52,50 @@ export default function Guestbook() {
             }
         }
     };
+
+    const [hasSubmitError, setHasSubmitError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isPosted, setIsPosted] = useState(false);
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (guestname && message) {
+            setIsLoading(true);
+            const addErr = await GuestbookAPI.addGuestbookEntry({
+                guest: guestname,
+                guest_message: message,
+                guest_email: guestEmail,
+            });
+
+            if (addErr) {
+                setHasSubmitError(true);
+            } else {
+                setIsValidated(false);
+                setEmptyInputs();
+                setIsPosted(true);
+            }
+            setIsLoading(false);
+        }
+    };
+
+    const [guestbookData, setGuestbookData] = useState<Message[] | undefined>();
+    async function loadGuestMessages() {
+        const { data, error } = await GuestbookAPI.getGuestbook();
+
+        if (data && data.length > 0) {
+            setGuestbookData(data);
+        } else if (error) {
+            console.error(error.message);
+        }
+    }
+
+    const guestbookMap = guestbookData ? (
+        guestbookData.map((guestMessage, index) => (
+            <GuestbookItem key={`guestbookitem-${index}`} {...guestMessage} />
+        ))
+    ) : (
+        <p>No guestbook messages yet!</p>
+    );
 
     useEffect(() => {
         loadGuestMessages();
@@ -142,18 +160,24 @@ export default function Guestbook() {
                     />
                     <button
                         disabled={!isValidated}
-                        className='cursor-pointer rounded bg-amber-300 p-2 text-gray-800 transition hover:scale-105 disabled:scale-100 disabled:cursor-default disabled:bg-gray-300 disabled:text-gray-500'
+                        className={`${isLoading ? 'animate-pulse' : undefined} cursor-pointer rounded bg-amber-300 p-2 text-gray-800 transition hover:scale-105 disabled:scale-100 disabled:cursor-default disabled:bg-gray-300 disabled:text-gray-500`}
                     >
                         SUBMIT
                     </button>
                     {validationError && (
-                        <p>
+                        <p className='max-w-70 text-red-500'>
                             There was an issue with your captcha validation.
-                            Please try again!
                         </p>
                     )}
                     {hasSubmitError && (
-                        <p>There was an issue with your submission. Please try again!</p>
+                        <p className='max-w-70 text-red-500'>
+                            There was an issue with message submission.
+                        </p>
+                    )}
+                    {isPosted && (
+                        <p className='max-w-70 text-green-500'>
+                            Message posted and pending approval!
+                        </p>
                     )}
                 </form>
                 <div className='flex flex-col gap-2'>

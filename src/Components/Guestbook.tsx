@@ -5,10 +5,12 @@ import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 function GuestbookItem({ guest, guest_message }: Message) {
     return (
-        <li>
-            <div className='flex max-w-110 flex-col mb-4 text-xs/relaxed'>
+        <li className='px-4 py-5 odd:bg-slate-50'>
+            <div className='flex max-w-110 flex-col text-xs/relaxed'>
                 <p className='max-w-74'>{guest_message}</p>
-                <span>-from <span className='font-semibold'>{guest}</span></span>
+                <span className='text-right'>
+                    - <span className='font-semibold'>{guest}</span>
+                </span>
             </div>
         </li>
     );
@@ -30,11 +32,20 @@ export default function Guestbook() {
         setMessage(e.target.value);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const [hasSubmitError, setHasSubmitError] = useState(false);
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (guestname && message) {
-            GuestbookAPI.addGuestbookEntry({guest: guestname, guest_message: message, guest_email: guestEmail})
+            const addErr = await GuestbookAPI.addGuestbookEntry({
+                guest: guestname,
+                guest_message: message,
+                guest_email: guestEmail,
+            });
+
+            if (addErr) {
+                setHasSubmitError(true);
+            }
         }
     };
 
@@ -42,30 +53,43 @@ export default function Guestbook() {
     async function loadGuestMessages() {
         const { data, error } = await GuestbookAPI.getGuestbook();
 
-        if (data) {
+        if (data && data.length > 0) {
             setGuestbookData(data);
         } else if (error) {
             console.error(error.message);
         }
     }
 
-    const guestbookMap = guestbookData?.map((guestMessage, index) => (
+    const guestbookMap = guestbookData ? guestbookData.map((guestMessage, index) => (
         <GuestbookItem key={`guestbookitem-${index}`} {...guestMessage} />
-    ));
+    )) : <p>No guestbook messages yet!</p>;
 
-    const [hasToken, setHasToken] = useState(false);
-    const handleCaptchaVerification = (token: string) => {
-        if (token) setHasToken(true);
-    }
+    const [isValidated, setIsValidated] = useState(false);
+    const [validationError, setValidationError] = useState<
+        string | undefined
+    >();
+    const handleCaptchaVerification = async (token: string) => {
+        if (token) {
+            try {
+                const validated = await GuestbookAPI.validateHCaptcha(token);
+                setIsValidated(validated);
+            } catch (error: any) {
+                setValidationError(error.message);
+            }
+        }
+    };
 
     useEffect(() => {
         loadGuestMessages();
     }, []);
 
     return (
-        <div popover='auto' id='guestbook-popover' className='inset-[unset] right-5 mt-12 max-h-[75vh] max-w-[90vw] rounded-lg bg-white shadow-2xl lg:right-18'>
-            <div className='animate-slide-in1 flex flex-col-reverse gap-6  lg:flex-row px-4 py-6'>
-                <ul className='overflow-y-auto'>{guestbookMap}</ul>
+        <div
+            popover='auto'
+            id='guestbook-popover'
+            className='inset-[unset] right-5 mt-12 max-h-[75vh] max-w-[90vw] rounded-lg bg-white shadow-2xl lg:right-18'
+        >
+            <div className='animate-slide-in1 flex flex-col gap-6 px-4 py-6 lg:flex-row'>
                 <form className='flex flex-col gap-2' onSubmit={handleSubmit}>
                     <label
                         className='flex flex-col gap-1.5'
@@ -112,11 +136,32 @@ export default function Guestbook() {
                         />
                     </label>
 
-                    <HCaptcha sitekey={import.meta.env.VITE_hCaptcha_sitekey} onVerify={(token) => handleCaptchaVerification(token)} />
-                    <button disabled={!hasToken} className='cursor-pointer rounded disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-default disabled:scale-100 bg-amber-300 p-2 text-gray-800 transition hover:scale-105'>
+                    <HCaptcha
+                        sitekey={import.meta.env.VITE_hCaptcha_sitekey}
+                        onVerify={(token) => handleCaptchaVerification(token)}
+                    />
+                    <button
+                        disabled={!isValidated}
+                        className='cursor-pointer rounded bg-amber-300 p-2 text-gray-800 transition hover:scale-105 disabled:scale-100 disabled:cursor-default disabled:bg-gray-300 disabled:text-gray-500'
+                    >
                         SUBMIT
                     </button>
+                    {validationError && (
+                        <p>
+                            There was an issue with your captcha validation.
+                            Please try again!
+                        </p>
+                    )}
+                    {hasSubmitError && (
+                        <p>There was an issue with your submission. Please try again!</p>
+                    )}
                 </form>
+                <div className='flex flex-col gap-2'>
+                    <h2>Guestbook</h2>
+                    <ul className='max-h-90 overflow-y-auto rounded border border-gray-100'>
+                        {guestbookMap}
+                    </ul>
+                </div>
             </div>
         </div>
     );

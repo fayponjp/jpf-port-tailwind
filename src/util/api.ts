@@ -31,7 +31,24 @@ export const GuestbookAPI = {
                 .insert({guest, guest_message, guest_email});
 
         if (error) {
-            console.error(error.message);
+            return { error }
         }
+    },
+
+    async validateHCaptcha(token: string) {
+        const response = await fetch(
+            `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/validate-hcaptcha`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'omit',
+                body: JSON.stringify({ token })
+            }
+        );
+        
+        const data = await response.json();
+        return data.success === true;
     }
 }

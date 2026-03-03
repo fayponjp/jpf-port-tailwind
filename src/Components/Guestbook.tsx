@@ -120,6 +120,7 @@ export default function Guestbook() {
                             name='guestbookUser'
                             id='guestbookUser'
                             placeholder='hello, visitor!'
+                            value={guestname}
                             onChange={handleGuestnameChange}
                             required
                         />
@@ -135,6 +136,7 @@ export default function Guestbook() {
                             name='guestbookEmail'
                             id='guestbookEmail'
                             placeholder='Email'
+                            value={guestEmail}
                             onChange={handleGuestEmailChange}
                         />
                     </label>
@@ -149,6 +151,7 @@ export default function Guestbook() {
                             className='rounded border border-gray-300 p-1'
                             id='guestbookMessage'
                             rows={3}
+                            value={message}
                             onChange={handleMessageChange}
                             required
                         />

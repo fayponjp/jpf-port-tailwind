@@ -7,6 +7,11 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     host: '0.0.0.0',
-    allowedHosts: ['test.proftest.local', 'devserver-guestbook--faypon-dev.netlify.app']
+    allowedHosts: ['test.proftest.local', 'devserver-guestbook--faypon-dev.netlify.app'],
+    hmr: {
+      host: 'devserver-guestbook--faypon-dev.netlify.app',
+      protocol: 'wss',
+      port: 443
+    }
   },
 });

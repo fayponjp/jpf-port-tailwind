@@ -20,7 +20,7 @@ export default function ResumeItem({
                 </span>
             </div>
             {institution ? <div className='text-muted text-sm mb-2 font-semibold'>{institution}</div> : undefined}
-            <ul className='text-muted text-sm/8'>
+            <ul data-testid='resume-item' className='text-muted text-sm/8'>
                 {items.map((item, index) => (
                     <li className='mb-3' key={index}>
                         {item}

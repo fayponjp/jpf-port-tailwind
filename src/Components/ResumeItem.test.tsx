@@ -26,7 +26,11 @@ describe('ResumeItem component test', () => {
         expect(screen.getByText(testDateRange)).toBeInTheDocument();
         expect(screen.getByText(testInstitution)).toBeInTheDocument();
 
-        expect(renderedUL.children.length).toBe(testItems.length);
-        // expect(renderedUL.childNodes[0].firstChild).toBe(testItems[0]);
+        expect(renderedUL.querySelectorAll('li')).toHaveLength(testItems.length);
+
+    });
+
+    it('If institution is not included', () => {
+
     });
 })

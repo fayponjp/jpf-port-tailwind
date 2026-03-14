@@ -56,7 +56,13 @@ export default function Guestbook() {
     const [hasSubmitError, setHasSubmitError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isPosted, setIsPosted] = useState(false);
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
+    const clearSubmitMessages = () => {
+        setHasSubmitError(false);
+        setValidationError(undefined);
+        setIsPosted(false);
+    }
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (guestname && message) {
@@ -99,13 +105,17 @@ export default function Guestbook() {
 
     useEffect(() => {
         loadGuestMessages();
+
+        return () => {
+            clearSubmitMessages();
+        }
     }, []);
 
     return (
         <div
             popover='auto'
             id='guestbook-popover'
-            className='inset-[unset] right-5 mt-12 max-h-[75vh] max-w-[90vw] rounded-lg bg-white shadow-2xl lg:right-18'
+            className='inset-[unset] right-5 mt-12 max-h-[75vh] max-w-[90vw] rounded-lg bg-white shadow-2xl lg:right-18 text-base'
         >
             <div className='animate-slide-in1 flex flex-col gap-6 px-4 py-6 lg:flex-row'>
                 <form className='flex flex-col gap-2' onSubmit={handleSubmit}>
@@ -156,6 +166,7 @@ export default function Guestbook() {
                             required
                         />
                     </label>
+                    {message && <p className='text-xs text-center my-2 bg-amber-200'>Approved messages will be displayed unedited!</p>}
 
                     <HCaptcha
                         sitekey={import.meta.env.VITE_hCaptcha_sitekey}

@@ -36,8 +36,7 @@ const Projects: CarouselItemProps[] = [
                     Work In Progress!
                 </p>
                 <p>
-                    A dictionary app for Filipino slang. Written using Next.js,
-                    using Supabase for the database. Data is crowdsourced and
+                    A dictionary app for Filipino slang. Written using Next.js as a practical review of Next and its features. Data is crowdsourced and
                     managed via Supabase.
                 </p>
                 <p>'Di Bagets o 'di ba gets?</p>
@@ -63,7 +62,7 @@ const Projects: CarouselItemProps[] = [
                     >
                         online Wordle
                     </a>{' '}
-                    game. A self-imposed challenge project to recreate the game
+                    game (because I wanted to keep playing). A self-imposed challenge project to recreate the game
                     from scratch. Words are generated via the{' '}
                     <a
                         className='text-blue-200 underline underline-offset-1 visited:text-purple-500'

@@ -12,7 +12,18 @@ const Projects: CarouselItemProps[] = [
         img: ivMonitoring,
         subtopic: 'Mobile App',
         name: 'IV Monitoring',
-        desc: <><p>An application for tracking patient IV fluid measurements. Has mobile notifications, a 'remaining volume' visual and logging and printing functionality.</p><p>Created using React Native + TypeScript and the Context API.</p></>
+        desc: (
+            <>
+                <p>
+                    An application for tracking patient IV fluid measurements.
+                    Has mobile notifications, a 'remaining volume' visual and
+                    logging and printing functionality.
+                </p>
+                <p>
+                    Created using React Native + TypeScript and the Context API.
+                </p>
+            </>
+        ),
     },
     {
         projKey: 2,
@@ -25,14 +36,14 @@ const Projects: CarouselItemProps[] = [
                     Work In Progress!
                 </p>
                 <p>
-                    A dictionary app for Filipino slang. Written using React + TypeScript with React Router. Data is crowdsourced and managed via Supabase.
+                    A dictionary app for Filipino slang. Written using Next.js,
+                    using Supabase for the database. Data is crowdsourced and
+                    managed via Supabase.
                 </p>
-                <p>'Di Bagets o 'di ba
-                    gets?
-                </p>
+                <p>'Di Bagets o 'di ba gets?</p>
             </>
         ),
-        githubUrl: 'https://github.com/fayponjp/dibagets',
+        githubUrl: 'https://github.com/fayponjp/dibagets-next',
     },
     {
         projKey: 3,
@@ -43,15 +54,26 @@ const Projects: CarouselItemProps[] = [
         githubUrl: 'https://github.com/fayponjp/not-quite-wordle',
         desc: (
             <>
-            <p>
-                An infinitely-replayable recreation of The New York Times'{' '}
-                <a className='underline text-blue-200 visited:text-purple-500 underline-offset-1' href='https://www.nytimes.com/games/wordle/index.html'>
-                    online Wordle
-                </a>{' '}
-                game. A self-imposed challenge project to recreate the game
-                from scratch. Words are generated via the <a className='underline text-blue-200 visited:text-purple-500 underline-offset-1' href='https://www.npmjs.com/package/random-words'>random-words</a> npm package.
-            </p>
-            <p>Written in JavaScript using React.</p>
+                <p>
+                    An infinitely-replayable recreation of The New York Times'{' '}
+                    <a
+                        className='text-blue-200 underline underline-offset-1 visited:text-purple-500'
+                        target='_blank'
+                        href='https://www.nytimes.com/games/wordle/index.html'
+                    >
+                        online Wordle
+                    </a>{' '}
+                    game. A self-imposed challenge project to recreate the game
+                    from scratch. Words are generated via the{' '}
+                    <a
+                        className='text-blue-200 underline underline-offset-1 visited:text-purple-500'
+                        href='https://www.npmjs.com/package/random-words'
+                    >
+                        random-words
+                    </a>{' '}
+                    npm package.
+                </p>
+                <p>Written in JavaScript using React.</p>
             </>
         ),
     },
@@ -64,13 +86,14 @@ const Projects: CarouselItemProps[] = [
         desc: (
             <>
                 <p>
-                    A browser extension inspired by Intermittent Fasting mobile apps
-                    like Zero and Fasty. Uses the localStorage API for history tracking. Created with React.
+                    A browser extension inspired by Intermittent Fasting mobile
+                    apps like Zero and Fasty. Uses the localStorage API for
+                    history tracking. Created with React.
                 </p>
                 <p>
                     Learn more about Intermittent Fasting{' '}
                     <a
-                        className='underline text-blue-200 visited:text-purple-500 underline-offset-1'
+                        className='text-blue-200 underline underline-offset-1 visited:text-purple-500'
                         target='_blank'
                         href='https://www.hopkinsmedicine.org/health/wellness-and-prevention/intermittent-fasting-what-is-it-and-how-does-it-work'
                     >
@@ -106,11 +129,11 @@ function CarouselItem({
     return (
         <li
             key={`carouselItem-${projKey}`}
-            className={`inset-0 ml-[calc(50%-50vw)] flex px-4 h-full w-screen flex-col transition-opacity absolute duration-300 ${
+            className={`absolute inset-0 ml-[calc(50%-50vw)] flex h-full w-screen flex-col px-4 transition-opacity duration-300 ${
                 isActive ? 'visible opacity-100' : 'invisible opacity-0'
             }`}
         >
-            <div className='lg:mx-auto lg:text-base items-center text-sm px-4 flex flex-col-reverse gap-8 lg:flex-row lg:p-0'>
+            <div className='flex flex-col-reverse items-center gap-8 px-4 text-sm lg:mx-auto lg:flex-row lg:p-0 lg:text-base'>
                 <div className='flex'>
                     {/* lg:-translate-z-150 lg:-rotate-x-4 lg:rotate-y-20 */}
                     <img
@@ -119,19 +142,18 @@ function CarouselItem({
                         alt=''
                     />
                 </div>
-                <div className='box-border flex w-lg lg:self-start max-w-[80%] flex-col gap-2 text-white lg:mt-35 lg:text-shadow-2xs'>
-                    <div className=' font-semibold text-orange-100'>
+                <div className='box-border flex w-lg max-w-[80%] flex-col gap-2 text-white lg:mt-35 lg:self-start lg:text-shadow-2xs'>
+                    <div className='font-semibold text-orange-100'>
                         {subtopic}
                     </div>
                     <div className='text-5xl font-semibold lg:text-7xl'>
                         {name}
                     </div>
-                    <div className='text-sm/7 description'>
-                        {desc}
-                    </div>
+                    <div className='description text-sm/7'>{desc}</div>
                     <div className='links flex flex-row gap-2 font-mono'>
                         {githubUrl && (
                             <a
+                                target='_blank'
                                 href={githubUrl}
                                 className='text-gray-profile w-30 bg-white py-2 text-center tracking-wider visited:text-violet-700 hover:text-blue-400 visited:hover:text-violet-500'
                             >
@@ -140,6 +162,7 @@ function CarouselItem({
                         )}
                         {liveUrl && (
                             <a
+                                target='_blank'
                                 href={liveUrl}
                                 className='w-30 border border-white bg-transparent py-2 text-center tracking-wider text-white visited:text-violet-400 hover:text-blue-400 visited:hover:text-violet-300'
                             >
@@ -170,7 +193,7 @@ function ThumbnailItem({
 }) {
     return (
         <li
-            className={`relative h-56 w-38 cursor-pointer rounded overflow-hidden ring-2 transition-opacity ${
+            className={`relative h-56 w-38 cursor-pointer overflow-hidden rounded ring-2 transition-opacity ${
                 isActive
                     ? 'opacity-100 ring-orange-400'
                     : 'opacity-60 ring-white/60 hover:opacity-80'
@@ -222,19 +245,18 @@ export default function Carousel() {
     const handleNavClick = (direction: boolean) => {
         if (!direction) {
             if (selectedKey == 1) {
-                setSelectedKey(Projects.length) 
+                setSelectedKey(Projects.length);
             } else {
-                setSelectedKey((prevKey) => prevKey-1)
+                setSelectedKey((prevKey) => prevKey - 1);
             }
         } else {
             if (selectedKey == Projects.length) {
-                setSelectedKey(1)
+                setSelectedKey(1);
             } else {
-                setSelectedKey((prevKey) => prevKey+1)
-                
+                setSelectedKey((prevKey) => prevKey + 1);
             }
         }
-    }
+    };
 
     return (
         <section
@@ -248,15 +270,21 @@ export default function Carousel() {
             <div className='relative mx-auto mb-20 flex h-[90%] w-full flex-col px-8 lg:w-5xl lg:p-0'>
                 <ul className='list'>{carouselItems}</ul>
 
-                <ul className='absolute lg:visible invisible bottom-20 z-20 flex max-w-max gap-5 lg:left-[50%]'>
+                <ul className='invisible absolute bottom-20 z-20 flex max-w-max gap-5 lg:visible lg:left-[50%]'>
                     {thumbnailItems}
                 </ul>
 
-                <nav className='mt-auto mx-auto bottom-0 left-[25%] z-20 flex gap-8 text-white lg:left-[45%]'>
-                    <button onClick={() => handleNavClick(false)} className='h-20 w-20 cursor-pointer rounded-[50%] border-0 font-mono text-4xl font-semibold transition duration-300 hover:text-orange-300'>
+                <nav className='bottom-0 left-[25%] z-20 mx-auto mt-auto flex gap-8 text-white lg:left-[45%]'>
+                    <button
+                        onClick={() => handleNavClick(false)}
+                        className='h-20 w-20 cursor-pointer rounded-[50%] border-0 font-mono text-4xl font-semibold transition duration-300 hover:text-orange-300'
+                    >
                         {'<'}
                     </button>
-                    <button onClick={() => handleNavClick(true)} className='h-20 w-20 cursor-pointer rounded-[50%] border-0 font-mono text-4xl font-semibold transition duration-300 hover:text-orange-300'>
+                    <button
+                        onClick={() => handleNavClick(true)}
+                        className='h-20 w-20 cursor-pointer rounded-[50%] border-0 font-mono text-4xl font-semibold transition duration-300 hover:text-orange-300'
+                    >
                         {'>'}
                     </button>
                 </nav>

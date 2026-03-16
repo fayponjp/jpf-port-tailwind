@@ -6,11 +6,13 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faBars, faBook } from '@fortawesome/free-solid-svg-icons';
 import Resume from './Components/Resume';
-
+import { useState } from 'react';
 import Carousel from './Components/Carousel';
 import Guestbook from './Components/Guestbook';
 
 function App() {
+    const [showGuestBook, setShowGuestBook] = useState(false);
+
     return (
         <div className='flex-end relative grid min-h-screen grid-rows-[auto_1fr_auto] overflow-x-hidden bg-linear-to-b from-(--bg-bluegray) to-orange-50'>
             <header className='text-gray-profile fixed top-3 right-5 z-30 text-sm'>
@@ -45,14 +47,14 @@ function App() {
                     <button
                         className='animate-slide-in1 mt-4 ml-auto max-w-20 place-items-center rounded-lg border-2 border-white px-2 py-3'
                         title='Sign the Guestbook!'
-                        popoverTarget='guestbook-popover'
+                        onClick={() => setShowGuestBook(true)}
                     >
                         <FontAwesomeIcon
                             className='cursor-pointer text-3xl text-red-900 transition delay-50 hover:scale-110 hover:text-red-700'
                             icon={faBook}
                         />
                     </button>
-                    <Guestbook />
+                    <Guestbook isVisible={showGuestBook} toggle={() => setShowGuestBook(false)} />
                 </div>
             </header>
             <main className='text-gray-profile mx-auto flex flex-col gap-60 lg:w-5xl'>
@@ -118,7 +120,7 @@ function App() {
                     </div>
                     <div className='bg-grid absolute inset-0 -mx-15'></div>
                 </section>
-                <div></div>
+                <div ></div>
 
                 <Carousel />
                 <Resume />

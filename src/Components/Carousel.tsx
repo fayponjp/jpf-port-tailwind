@@ -1,7 +1,8 @@
 import fastImg from '../assets/fasting active.png';
 import dibaGets from '../assets/dibagets home.png';
 import ivMonitoring from '../assets/iv monitoring spread.png';
-import notWordle from '../assets/not-wordle.png';
+// import notWordle from '../assets/not-wordle.png';
+import tryal from '../assets/tryal.png';
 
 import SectionHeader from './SectionHeader';
 import { useState } from 'react';
@@ -17,10 +18,10 @@ const Projects: CarouselItemProps[] = [
                 <p>
                     An application for tracking patient IV fluid measurements.
                     Has mobile notifications, a 'remaining volume' visual and
-                    logging and printing functionality.
+                    logging and printable-report export functionality.
                 </p>
                 <p>
-                    Created using React Native + TypeScript and the Context API.
+                    Created using React Native + TypeScript, with Expo as the framework.
                 </p>
             </>
         ),
@@ -29,15 +30,16 @@ const Projects: CarouselItemProps[] = [
         projKey: 2,
         img: dibaGets,
         subtopic: 'Web Application',
-        name: 'DibaGets',
+        name: 'DibaGets?',
         desc: (
             <>
                 <p className='text-sm font-semibold text-yellow-200'>
                     Work In Progress!
                 </p>
                 <p>
-                    A dictionary app for Filipino slang. Written using Next.js as a practical review of Next and its features. Data is crowdsourced and
-                    managed via Supabase.
+                    A dictionary app for Filipino slang. Written using Next.js
+                    as a practical review of Next and its features. Data is
+                    crowdsourced and managed via Supabase.
                 </p>
                 <p>'Di Bagets o 'di ba gets?</p>
             </>
@@ -46,33 +48,20 @@ const Projects: CarouselItemProps[] = [
     },
     {
         projKey: 3,
-        img: notWordle,
+        img: tryal,
         subtopic: 'Web Application',
-        name: 'Not-Quite-Wordle',
-        liveUrl: 'https://fayponjp.github.io/not-quite-wordle/',
-        githubUrl: 'https://github.com/fayponjp/not-quite-wordle',
+        name: 'GameTryal',
+        liveUrl: 'https://fayponjp.github.io/browser-games/',
+        githubUrl: 'https://github.com/fayponjp/browser-games',
         desc: (
             <>
                 <p>
-                    An infinitely-replayable recreation of The New York Times'{' '}
-                    <a
-                        className='text-blue-200 underline underline-offset-1 visited:text-purple-500'
-                        target='_blank'
-                        href='https://www.nytimes.com/games/wordle/index.html'
-                    >
-                        online Wordle
-                    </a>{' '}
-                    game (because I wanted to keep playing). A self-imposed challenge project to recreate the game
-                    from scratch. Words are generated via the{' '}
-                    <a
-                        className='text-blue-200 underline underline-offset-1 visited:text-purple-500'
-                        href='https://www.npmjs.com/package/random-words'
-                    >
-                        random-words
-                    </a>{' '}
-                    npm package.
+                    A living, constantly growing collection of games that started as self-imposed challenges. 
                 </p>
-                <p>Written in JavaScript using React.</p>
+                <p>
+                    Currently features a Wordle recreation as well as a pocketmonster-themed hangman game.
+                </p>
+                <p>Written in TypeScript, React, and Tailwind CSS.</p>
             </>
         ),
     },
@@ -132,23 +121,20 @@ function CarouselItem({
                 isActive ? 'visible opacity-100' : 'invisible opacity-0'
             }`}
         >
-            <div className='flex flex-col-reverse items-center gap-8 px-4 text-sm lg:mx-auto lg:flex-row lg:p-0 lg:text-base'>
-                <div className='flex'>
-                    {/* lg:-translate-z-150 lg:-rotate-x-4 lg:rotate-y-20 */}
-                    <img
-                        src={img}
-                        className='max-w-[80vw] rounded-xl object-contain opacity-95 ring-1 ring-gray-500 lg:mt-8 lg:max-h-170'
-                        alt=''
-                    />
-                </div>
-                <div className='box-border flex w-lg max-w-[80%] flex-col gap-2 text-white lg:mt-35 lg:self-start lg:text-shadow-2xs'>
+            <div className='mx-auto grid lg:gap-0 gap-8 max-w-[90%] lg:max-w-7xl place-items-center lg:grid-cols-2'>
+                <img
+                    src={img}
+                    className='rounded-xl object-cover max-h-160 max-w-full opacity-95 lg:order-0 order-1'
+                    alt=''
+                />
+                <div className='box-border flex flex-col w-fit text-white lg:place-self-start'>
                     <div className='font-semibold text-orange-100'>
                         {subtopic}
                     </div>
-                    <div className='text-5xl font-semibold lg:text-7xl'>
+                    <div className='text-3xl font-semibold lg:text-7xl'>
                         {name}
                     </div>
-                    <div className='description text-sm/7'>{desc}</div>
+                    <div className='description flex flex-col gap-2 my-3 text-sm'>{desc}</div>
                     <div className='links flex flex-row gap-2 font-mono'>
                         {githubUrl && (
                             <a
@@ -201,7 +187,7 @@ function ThumbnailItem({
             onClick={onClick}
         >
             <img
-                className='h-full w-full object-cover ring-2 ring-white/60'
+                className='h-full lg:w-full object-cover ring-2 ring-white/60'
                 src={img}
                 alt=''
             />
@@ -269,20 +255,20 @@ export default function Carousel() {
             <div className='relative mx-auto mb-20 flex h-[90%] w-full flex-col px-8 lg:w-5xl lg:p-0'>
                 <ul className='list'>{carouselItems}</ul>
 
-                <ul className='invisible absolute bottom-20 z-20 flex max-w-max gap-5 lg:visible lg:left-[50%]'>
+                <ul className='invisible absolute bottom-20 z-20 flex max-w-max gap-5 lg:visible lg:left-[45%]'>
                     {thumbnailItems}
                 </ul>
 
                 <nav className='bottom-0 left-[25%] z-20 mx-auto mt-auto flex gap-8 text-white lg:left-[45%]'>
                     <button
                         onClick={() => handleNavClick(false)}
-                        className='h-20 w-20 cursor-pointer rounded-[50%] border-0 font-mono text-4xl font-semibold transition duration-300 hover:text-orange-300'
+                        className='h-20 w-20 cursor-pointer rounded-[50%] border-0 font-mono text-4xl font-semibold transition duration-300 active:text-orange-300 hover:text-orange-300'
                     >
                         {'<'}
                     </button>
                     <button
                         onClick={() => handleNavClick(true)}
-                        className='h-20 w-20 cursor-pointer rounded-[50%] border-0 font-mono text-4xl font-semibold transition duration-300 hover:text-orange-300'
+                        className='h-20 w-20 cursor-pointer rounded-[50%] border-0 font-mono text-4xl font-semibold transition duration-300 active:text-orange-300 hover:text-orange-300'
                     >
                         {'>'}
                     </button>

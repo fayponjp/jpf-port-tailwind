@@ -121,7 +121,7 @@ function CarouselItem({
                 isActive ? 'visible opacity-100' : 'invisible opacity-0'
             }`}
         >
-            <div className='mx-auto grid lg:gap-0 gap-8 max-w-[90%] lg:max-w-7xl place-items-center lg:grid-cols-2'>
+            <div className='mx-auto grid lg:gap-4 gap-8 max-w-[90%] lg:max-w-7xl place-items-center lg:grid-cols-2'>
                 <img
                     src={img}
                     className='rounded-xl object-cover max-h-160 max-w-full opacity-95 lg:order-0 order-1'

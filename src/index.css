@@ -89,6 +89,24 @@
             transform: translateY(0);
         }
     }
+
+    --animate-typewriter: typeeffect 1s steps(18) forwards, blink 1s step-end infinite;
+
+    @keyframes typeeffect {
+        from {
+            width: 0;
+        }
+
+        to {
+            width: 100%;
+        }
+    }
+
+    @keyframes blink {
+        50% {
+            border-color: transparent;
+        }
+    }
 }
 
 @layer utilities {

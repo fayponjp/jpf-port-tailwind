@@ -76,9 +76,11 @@ function App() {
                             <div className='mx-12 mb-2 flex h-px grow bg-linear-to-r from-indigo-300 via-orange-50 to-orange-200'></div>
                         </div>
                         <div className='mx-auto flex max-w-125 flex-col gap-3 lg:mx-0'>
-                            <p className='font-mono text-2xl'>
-                                Software Developer
-                            </p>
+                            <div className='flex'>
+                                <div className='font-mono text-2xl'>
+                                    <p className='border-r m-x-auto max-w-fit overflow-hidden whitespace-nowrap animate-typewriter'>Software Developer</p>
+                                </div>
+                            </div>
                             <p>SaaS experience</p>
                             <p>Web and .Net development</p>
                             <p>
